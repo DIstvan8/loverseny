@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head> <img id="fomenu" src="menufutam.gif" alt="">
+  <link rel="stylesheet" href="loverseny.css">
+  <meta charset="UTF-8">
+  <title>Lóverseny</title>
+
+
+</head>
+
+<body>
+
+
+  <h1>🐎 Lóverseny Fogadás</h1>
+  <div id="folyo"> <h2>Lovaink:</h2>
+  <img  src="lovak_scroll_dark.gif" alt=""></div>
+  <div id="lolista">
+    <h2>Lovaink szponzorai:</h2>
+    Sebes -<a id="redbull" href="https://www.redbullracing.com/"> Red Bull Racing</a> <br> <br>
+    Vágta -<a id="oracle" href="https://www.oracle.com/"> Oracle</a> <br><br>
+    Villám -<a id="merci" href="https://www.mercedesamgf1.com/"> Mercedes-AMG Petronas</a><br><br>
+    Csoda Patkó -<a id="ferrari" href="https://www.ferrari.com/"> Ferrari</a><br><br>
+    Lángos -<a id="mclaren" href="https://www.mclaren.com/"> McLaren</a><br><br>
+    Üstökös -<a id="petronas" href="https://www.petronas.com/"> Petronas</a><br><br>
+    Füstös -<a id="dell" href="https://www.dell.com/"> Dell Technologies</a><br><br>
+    Szellem -<a id="santander" href="https://www.santander.com/"> Santander</a><br><br>
+    Kincsem -<a id="rolex" href="https://www.rolex.com/"> Rolex</a><br><br>
+    Armand -<a id="pirelli" href="https://www.pirelli.com/"> Pirelli</a><br><br>
+  </div>
+  <div class="box">
+
+    <p>💰 Egyenleg: <span id="balance">1000</span> Ft</p>
+
+
+    <select id="lovak" name="lovak">
+      <option value="1">Sebes</option>
+      <option value="2">Vágta</option>
+      <option value="3">Villám</option>
+      <option value="4">Üstökös</option>
+      <option value="5">Patkó</option>
+      <option value="6">Szellem</option>
+      <option value="7">Lángos</option>
+      <option value="8">Füstös</option>
+      <option value="9">Kincsem</option>
+      <option value="10">Lakatos Armand</option>
+    </select>
+
+    <input type="number" id="bet" placeholder="Tét">
+
+    <button onclick="race()">Verseny indítása 🏁</button>
+
+    <div class="result" id="result"></div>
+
+
+
+    <div class="minigame" id="minigame">
+      <h3>💀 Elfogyott a pénzed!</h3>
+      <p id="kerdes"></p>
+      <input type="text" id="answer" placeholder="Válasz...">
+      <button onclick="check()">Ellenőrzés</button>
+    </div>
+
+
+    <script>
+
+      let balance = 1000;
+      let correctAnswer = "";
+      let horses = [
+        "Sebes",
+        "Vágta",
+        "Villám",
+        "Üstökös",
+        "Patkó",
+        "Szellem",
+        "Lángos",
+        "Füstös",
+        "Kincsem",
+        "Armand"
+      ];
+
+      function race() {
+        let bet = parseInt(document.getElementById("bet").value);
+        let chosen = document.getElementById("lovak").value;
+
+        if (!bet || bet <= 0) return alert("Adj meg tétet!");
+        if (bet > balance) return alert("Nincs elég pénzed!");
+
+        let winner = horses[Math.floor(Math.random() * horses.length)];
+
+        let chosenName = horses[chosen - 1];
+
+        if (chosenName === winner) {
+          balance += bet * 2;
+          document.getElementById("result").innerText =
+            "🏆 Nyertél! (" + winner + ")";
+        } else {
+          balance -= bet;
+          document.getElementById("result").innerText =
+            "💀 Vesztettél! " + winner + " nyert :( ";
+        }
+
+        update();
+
+        if (balance <= 0) {
+          showMinigame();
+        }
+      }
+
+      function update() {
+        document.getElementById("balance").innerText = balance;
+      }
+
+      function showMinigame() {
+        document.getElementById("minigame").style.display = "block";
+
+        let a = Math.floor(Math.random() * 100);
+        let b = Math.floor(Math.random() * 100);
+
+        correctAnswer = (a + b).toString();
+
+        document.getElementById("kerdes").innerText =
+          `Mennyi ${a} + ${b}?`;
+      }
+
+      function check() {
+        let ans = document.getElementById("answer").value;
+
+        if (ans === correctAnswer) {
+          balance = 500;
+          alert("🎉 Helyes! Kapsz 500 Ft indulótőkét!");
+          document.getElementById("minigame").style.display = "none";
+          update();
+        } else {
+          alert("❌ Nem jó! Próbáld újra.");
+        }
+      }
+
+    </script>
+  </div>
+
+</body>
+
+</html>
