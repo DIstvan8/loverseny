@@ -1,0 +1,153 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial;
+    background: #121212;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+.tartalom-elrendezes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+#fomenu {
+    width: min(100%, 800px);
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+#folyo {
+    float: right;
+}
+
+.box {
+    background: #282828;
+    padding: 20px;
+    border-radius: 10px;
+    width: min(100%, 320px);
+    margin: 0;
+}
+
+.select,
+input,
+button {
+    padding: 10px;
+    margin: 10px;
+    width: 90%;
+    border-radius: 6px;
+    border: none;
+}
+
+button {
+    background: #b2fd4d;
+    color: #121212;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #16a34a;
+}
+
+.result {
+    margin-top: 15px;
+}
+
+.minigame {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    background: #334155;
+    /* border-radius: 10px; */
+}
+
+.nevek-doboz {
+    height: 150px;
+    overflow: hidden;
+}
+
+.mozgo-nevek {
+    /* padding: 20px; */
+    display: flex;
+    flex-direction: column;
+    animation: mozgasAnimacio 3s linear infinite;
+    text-align: left;
+}
+
+.nevek-doboz:hover .mozgo-nevek {
+    animation-play-state: paused;
+}
+
+.mozgo-nevek a {
+    text-decoration: none;
+}
+
+@keyframes mozgasAnimacio {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+#redbull {
+    color: #2844e2;
+}
+
+#oracle {
+    color: #F80000;
+}
+
+#merci {
+    color: #00D2BE;
+}
+
+#petronas {
+    color: #00A19B;
+}
+
+#ferrari {
+    color: #DC0000;
+}
+
+#santander {
+    color: #EC0000;
+}
+
+#mclaren {
+    color: #FF8700;
+}
+
+#dell {
+    color: #007DB8;
+}
+
+#rolex {
+    color: #006039;
+}
+
+#pirelli {
+    color: #FFD000;
+}
+
+@media (min-width: 900px) {
+    .tartalom-elrendezes {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+    }
+}
